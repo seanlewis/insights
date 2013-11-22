@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="/static/css/simple-sidebar.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+  
+    <div id="wrapper">
+      
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><a href="#">ys labs</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Shortcuts</a></li>
+          <li><a href="#">Overview</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1>
+            <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+            All Media Networks
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+            <div class="col-md-10">
+              <p class="lead">The list below displays all media options we use at Young &amp; Shand.</p>
+            </div>
+            <div class="right-align">
+                <!-- Split button -->
+                <div class="btn-group">
+                  <button onclick="redirect_home();" type="button" class="btn btn-danger">View All</button>
+                  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    {% for category in categories %}
+                    <li><a href="?category={{category['category']}}">{{category['category']}}</a></li>
+                    {% endfor %} 
+                  </ul>
+                </div>
+              </div>
+            <div class="table">
+              <table class="table table-striped">
+                <tr>
+                  <th>Name</th>
+                  <th>Network</th>
+                  <th>CPC</th> 
+                  <th>Max CPC</th>
+                  <th>Min CPC</th>
+                  <th>Notes</th>
+                </tr>
+                {% for network in media %}
+                  <tr>
+                    <td>{{network['name']}}</td>
+                    <td>{{network['network']}}</td>
+                    <td>${{network['cpc']}}</td>
+                    <td>${{network['maxcpc']}}</td>
+                    <td>${{network['mincpc']}}</td>
+                    <td>{{network['notes']}}</td>                
+                  </tr>
+                {% endfor %}    
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+	
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <!-- Put this into a custom JavaScript file to make things more organized -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+
+    function redirect_home() {
+      window.location.href = "/";
+    }
+    </script>
+  </body>
+</html>
