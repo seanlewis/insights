@@ -12,7 +12,7 @@ def hello():
 
 @app.route("/")
 def index():
-	connection = mysql.connect("127.0.0.1", "root", "root", "media.yng.sh", 3306)
+	connection = mysql.connect("127.0.0.1", "root", "root", "<SERVER ADDRESS>", 3306)
 	c = connection.cursor(mysql.cursors.DictCursor)
 	
 	q = "SELECT * FROM media"
